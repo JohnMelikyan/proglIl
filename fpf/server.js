@@ -1,4 +1,4 @@
-var Grass = require("./mod/grass.js");
+var Grass = require("./mod/grass");
 var GrassEater = require("./mod/grasseater.js");
 var GrassEaterEater = require("./mod/grasseatereater.js");
 var QuasiGrassEater = require("./mod/quasigrasseater.js");
@@ -11,17 +11,27 @@ var Plague = require("./mod/plague.js");
 
 
 
+var express = require('express');
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 
+app.use(express.static("."));
+app.get('/', function (req, res) {
+   res.redirect('index.html');
+});
+server.listen(3000);
 
 
-
-
-
-
-
-
-
+io.on('connection', function (socket) {
+    
+    socket.on("send message", function (data) {
+        
+        io.sockets.emit("display message", matrix);
+    });
+ });
+ 
 
 
 let _size = 100;
@@ -34,6 +44,8 @@ for(let i = 0; i < _size; i++)
       matrix[i][j] = new Null_Obj;
     } 
 }
+
+module.exports = matrix;
 var i = -1;
 var _i = 0;
 var kvar;
@@ -180,9 +192,7 @@ function draw()
                     }
                     else if ( matrix[y1][x1]._index == 3 )//anjatum em gishatichi move @
                     {
-                        if(matrix[y1][x1].life == true)
-                        {
-                        }
+                        if(matrix[y1][x1].life == true){}
                     }
                     else if ( matrix[y1][x1]._index == 4 )
                     {
@@ -277,9 +287,5 @@ function draw()
                     }
                    
                 }
-   
-
-
 
 }
-// p.s. neroxutyun bayc el chem karoxanum kod@ dzem: Uxarkum em ayn inch stacvav
