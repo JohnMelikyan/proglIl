@@ -1,7 +1,7 @@
 /*
 var Null_Obj = require("./mod/null_obj.js");
 */
-var Grass = require("grass.js");
+/*var Grass = require("grass.js");
 var GrassEater = require("grasseater.js");
 var GrassEaterEater = require("grasseatereater.js");
 var QuasiGrassEater = require("quasigrasseater.js");
@@ -10,7 +10,7 @@ var Human = require("human.js");
 var Kvadrat = require("kvadrat.js");
 var Null_Obj = require("null_obj.js");
 var Zabor = require("zabor.js");
-var Plague = require("plague.js");
+var Plague = require("plague.js");*/
 
 
 

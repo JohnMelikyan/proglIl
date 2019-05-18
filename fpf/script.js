@@ -1,6 +1,8 @@
 var socket = io();
 
-var matrix = io.sockets.emit("display message", matrix);
+io.sockets.emit("info", matrix);
+
+var matrix;
 
 let _size = 100;
 var kvar;
@@ -19,6 +21,7 @@ function setup()
 }
 function draw()
 {
+    matrix = info.matrix;
     // guyn@ poxelwu hamar
     if(a_c == true)
     {
