@@ -19,13 +19,13 @@ var io = require('socket.io')(server);
 
 app.use(express.static("."));
 app.get('/', function (req, res) {
-   res.redirect('index.html');
+    res.redirect('index.html');
 });
 server.listen(3000);
 
 
 /**/
- 
+
 
 
 let _size = 100;
@@ -35,17 +35,24 @@ for(let i = 0; i < _size; i++)
     matrix[i] = new Array;
     for(let j = 0;j < _size; j++)
     {
-      matrix[i][j] = new Null_Obj;
+        matrix[i][j] = new Null_Obj;
     } 
 }
 
+
+
+//test
+matrix[1][1] = new Grass(1,1);
 module.exports = matrix;
+//test
 
 
 var side = 1000 / _size;
 
 var a_c = true;
-
+var c1 = 0;
+var c2 = 255;
+var c3 = 0;
   
     
    
@@ -102,47 +109,39 @@ function _logic()
     }
 
     //menak nkarelu hamar for 
-    for (var y = 0; y < matrix.length; y+=1)
-    {
-        for (var x = 0; x < matrix[y].length; x+=1) 
-        {
-            
-              
-        }            
-    }
     //metodneri for
-    for (var y1 = 0; y1 < matrix.length; y1+=1) 
+    for (var y11 = 0; y11 < matrix.length; y11+=1) 
             {
-                for (var x1 = 0; x1 < matrix[y1].length; x1+=1) 
+                for (var x11 = 0; x11 < matrix[y11].length; x11+=1) 
                 { 
-                    if ( matrix[y][x]._index == 1)
+                    if ( matrix[y11][x11]._index == 1)
                     {  
-                            matrix[y][x].grow_up(0.5);
-                            matrix[y][x].newObj();   
+                            matrix[y11][x11].grow_up(0.5);
+                            matrix[y11][x11].newObj();   
                     }
-                    else if ( matrix[y1][x1]._index == 2 )
+                    else if ( matrix[y11][x11]._index == 2 )
                     {
-                            if(matrix[y1][x1].life == true)
+                            if(matrix[y11][x11].life == true)
                             {
-                            matrix[y1][x1].move();
+                            matrix[y11][x11].move();
                             }
                        
                     }
-                    else if ( matrix[y1][x1]._index == 3 )//anjatum em gishatichi move @
+                    else if ( matrix[y11][x11]._index == 3 )//anjatum em gishatichi move @
                     {
-                            if(matrix[y1][x1].life == true){}
+                            if(matrix[y11][x11].life == true){}
                     }
-                    else if ( matrix[y1][x1]._index == 4 )
+                    else if ( matrix[y11][x11]._index == 4 )
                     {
-                            if(matrix[y1][x1].life == true)
+                            if(matrix[y11][x11].life == true)
                             {
-                            matrix[y1][x1].move();
+                            matrix[y11][x11].move();
                             }
                     }
-                    else if ( matrix[y1][x1]._index == 7 )
+                    else if ( matrix[y11][x11]._index == 7 )
                     {
-                            matrix[y1][x1].info_user();
-                            if(matrix[y1][x1].life == true )
+                            matrix[y11][x11].info_user();
+                            if(matrix[y11][x11].life == true )
                             {
                             // kvar.check();
 
@@ -150,11 +149,11 @@ function _logic()
                                 
                                     //console.log("I dont sleep");
                                     // matrix[y1][x1].its_time_to_die();
-                                        matrix[y1][x1].take();
-                                        matrix[y1][x1].new_();
+                                        matrix[y11][x11].take();
+                                        matrix[y11][x11].new_();
                                 
-                                        matrix[y1][x1].go_home();
-                                        matrix[y1][x1].move();
+                                        matrix[y11][x11].go_home();
+                                        matrix[y11][x11].move();
                                 
                                     
                                 
@@ -232,4 +231,4 @@ function _logic()
 }
 
 
-setInterval(_logic, 1000);
+setInterval(_logic, 100);

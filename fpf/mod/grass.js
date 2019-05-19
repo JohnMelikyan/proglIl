@@ -1,28 +1,29 @@
 /*
 var Null_Obj = require("./mod/null_obj.js");
 */
-/*var Grass = require("grass.js");
-var GrassEater = require("grasseater.js");
-var GrassEaterEater = require("grasseatereater.js");
-var QuasiGrassEater = require("quasigrasseater.js");
-var QuasiGrass = require("quasigrass.js");
-var Human = require("human.js");
-var Kvadrat = require("kvadrat.js");
-var Null_Obj = require("null_obj.js");
-var Zabor = require("zabor.js");
-var Plague = require("plague.js");*/
+var Grass = require("./grass");
+var GrassEater = require("./grasseater.js");
+var GrassEaterEater = require("./grasseatereater.js");
+var QuasiGrassEater = require("./quasigrasseater.js");
+var QuasiGrass = require("./quasigrass.js");
+var Human = require("./human.js");
+var Kvadrat = require("./kvadrat.js");
+var Null_Obj = require("./null_obj.js");
+var Zabor = require("./zabor.js");
+var Plague = require("./plague.js");
 
-
-
+var matrix = require("../server.js");
 
 module.exports = class Grass
 {
-  constructor() 
+  constructor(x,y) 
   {
       this.x = x;
       this.y = y;
       this._index = 1;
       this.multiply = 0;
+      
+     
   }
   chooseCell()
   {
@@ -31,7 +32,7 @@ module.exports = class Grass
     {
       for(var y1=-1; y1<2; y1++)
       {
-        if(this.x + x1 >= 0 && this.x + x1 < matrix[0].length && this.y + y1 >= 0 && this.y + y1 < matrix.length)
+        if(this.x + x1 >= 0 && this.x + x1 < 100 && this.y + y1 >= 0 && this.y + y1 < 100)
         {
           if(x1 == 0 && y1 == 0){}
           else
