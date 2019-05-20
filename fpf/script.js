@@ -1,8 +1,13 @@
-var socket = io();
 
-io.sockets.emit("info", matrix);
+function setup()
+{
+    let socket = io();
 
-var matrix;
+//io.sockets.emit("info", matrix);
+
+socket.on("info",matrix);
+
+var matrix = info.matrix;
 
 let _size = 100;
 var kvar;
@@ -11,9 +16,6 @@ var c1 = 0;
 var c2 = 255;
 var c3 = 0;
 var a_c = true;
-
-function setup()
-{
     frameRate(10);
     createCanvas(matrix[0].length * side, matrix.length * side);
     background('#acacac');

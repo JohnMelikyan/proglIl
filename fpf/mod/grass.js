@@ -12,7 +12,10 @@ var Null_Obj = require("./null_obj.js");
 var Zabor = require("./zabor.js");
 var Plague = require("./plague.js");
 
-var matrix = require("../server.js");
+
+
+
+
 
 module.exports = class Grass
 {

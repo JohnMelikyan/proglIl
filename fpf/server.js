@@ -29,7 +29,7 @@ server.listen(3000);
 
 
 let _size = 100;
-var matrix = new Array;
+matrix = new Array;
 for(let i = 0; i < _size; i++)
 {
     matrix[i] = new Array;
@@ -43,7 +43,7 @@ for(let i = 0; i < _size; i++)
 
 //test
 matrix[1][1] = new Grass(1,1);
-module.exports = matrix;
+
 //test
 
 
@@ -226,9 +226,9 @@ function _logic()
                 }
                 
                 io.sockets.emit("info", matrix);
-                  
+                console.log("end");
 
 }
 
 
-setInterval(_logic, 100);
+setInterval(_logic, 1000);
