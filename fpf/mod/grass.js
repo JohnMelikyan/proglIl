@@ -61,8 +61,10 @@ module.exports = class Grass
       {
           matrix[_arr[1][ran]][_arr[0][ran]] = new Grass(_arr[0][ran], _arr[1][ran]);
           this.multiply = 0;
+          return true;
       }
     }
+    return false;
   }
   grow_up(speed)
   {

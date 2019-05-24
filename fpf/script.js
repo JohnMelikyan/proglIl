@@ -5,9 +5,9 @@ function setup()
 
 //io.sockets.emit("info", matrix);
 
-socket.on("info",matrix);
 
-var matrix = info.matrix;
+
+
 
 let _size = 100;
 var kvar;
@@ -15,46 +15,29 @@ var side = 1000 / _size;
 var c1 = 0;
 var c2 = 255;
 var c3 = 0;
+var cout = 0;
 var a_c = true;
-    frameRate(10);
-    createCanvas(matrix[0].length * side, matrix.length * side);
-    background('#acacac');
-  
-}
-function draw()
+socket.on("info",drawCreatures);
+
+
+
+
+
+
+function drawCreatures(info)
 {
+    c1 = info.c1;
+    c2 = info.c2;
+    c3 = info.c3;
+    cout = info.grassCounter;
     matrix = info.matrix;
+    
+        frameRate(10);
+        createCanvas(matrix[0].length * side, matrix.length * side);
+        background('#acacac');
+   
     // guyn@ poxelwu hamar
-    if(a_c == true)
-    {
-        c1+=4;
-        if(c1>255){
-            c1 = 255;
-            c2 +=4;
-        }
-        if(c2>255){
-            c1 = 255;
-            c2 +=4;
-        }
-        if(c3>=255){
-            a_c = false;
-        }
-    }
-    else
-    {
-        c3-=4;
-        if(c1<=0){
-            c1=0;
-            c2-=4;
-        }
-        if(c2<=0){
-            c2=0;
-            c3-=4;
-        }
-        if(c3<=0){
-            a_c = true;
-        }
-    }
+   
 
     //menak nkarelu hamar for 
     for (var y = 0; y < matrix.length; y+=1)
@@ -126,4 +109,6 @@ function draw()
 
 
 
+}
+console.log(cout);
 }

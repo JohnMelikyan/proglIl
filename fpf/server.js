@@ -16,6 +16,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
+let grassHashiv = 2;
 
 app.use(express.static("."));
 app.get('/', function (req, res) {
@@ -116,8 +117,19 @@ function _logic()
                 { 
                     if ( matrix[y11][x11]._index == 1)
                     {  
-                            matrix[y11][x11].grow_up(0.5);
-                            matrix[y11][x11].newObj();   
+                        var grow_up_speed = 0.5;
+                        if(c1>122){
+                            grow_up_speed = 0.5;
+                        }
+                        else
+                        {
+                            grow_up_speed = 1;
+                        }
+                            matrix[y11][x11].grow_up(1);
+                            if(matrix[y11][x11].newObj()){
+                                
+                                grassHashiv++;
+                            }   
                     }
                     else if ( matrix[y11][x11]._index == 2 )
                     {
@@ -224,9 +236,13 @@ function _logic()
                     }
                    
                 }
-                
-                io.sockets.emit("info", matrix);
-                console.log("end");
+                let sendData = {
+                    matrix: matrix,
+                    grassCounter: grassHashiv,
+                    c1:c1,c2:c2,c3:c3
+                }
+                io.sockets.emit("info", sendData);
+                console.log(grassHashiv);
 
 }
 
