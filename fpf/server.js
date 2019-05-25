@@ -54,7 +54,8 @@ var a_c = true;
 var c1 = 0;
 var c2 = 255;
 var c3 = 0;
-  
+let target_x = 0;
+let target_y = 0; 
     
    
 
@@ -73,10 +74,17 @@ var c3 = 0;
    //matrix[42][23] = new Grass(23,42);
   //  matrix[36][7] = new GrassEaterEater(7,36);
     
-  
+    io.on("send",function(){
+        socket.on;
+        target_x = send.target_x;
+        target_y = send.target_y;
+    });
 
 function _logic()
 {
+    
+
+    console.log(target_x,target_y);
     // guyn@ poxelwu hamar
     if(a_c == true)
     {
