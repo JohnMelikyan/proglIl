@@ -5,8 +5,8 @@ function setup()
 
 
 
-   let target_x = 0;
-   let target_y = 0;
+   target_x = 0;
+   target_y = 0;
 
 
 
@@ -14,7 +14,13 @@ function setup()
      
 //io.sockets.emit("info", matrix);
 
-
+    function bodyClick(evt){
+       // console.log("Clicked at X: " + evt.pageX + ", Y: " + evt.pageY);
+        target_x = Math.floor(evt.pageX/10-1);
+        target_y = Math.floor(evt.pageY/10-1);
+        socket.emit("send", sendInfo);
+        console.log("Clicked at X: " + target_x + ", Y: " + target_y);
+    }
 
 
 
@@ -36,23 +42,15 @@ function setup()
     function drawCreatures(info)
     {
         
-        function bodyClick(evt){
-            console.log("Clicked at X: " + evt.pageX + ", Y: " + evt.pageY);
-            target_x = (evt.pageX-10)/10;
-            target_y = (evt.pageY-10)/10;
-    
-         }
-    
-         window.onclick = bodyClick;
-         
-         sendInfo = {
-            target_x:target_x,
-            target_y:target_y
-        }
-    
-         socket.emit("send", sendInfo);
+        
+        sendInfo = {
+           target_x:target_x,
+           target_y:target_y
+       }
+       socket.emit("send", sendInfo);
     
         window.onclick = bodyClick;
+
 
         c1 = info.c1;
         c2 = info.c2;
@@ -99,6 +97,14 @@ function setup()
                         rect(x * side, y * side, side, side);
                     }
                 }
+                else if ( matrix[y][x]._index == 9)
+                {
+                    if(matrix[y][x].life == true)
+                    {
+                        fill("#FFE299");
+                        rect(x * side, y * side, side, side);
+                    }
+                }
                 else if ( matrix[y][x]._index == 3 )
                 {
                     if(matrix[y][x].life == true)
@@ -135,7 +141,9 @@ function setup()
         
 
 
-        console.log(cout);
+        //console.log(cout);
+       
+        
     }
    
 }

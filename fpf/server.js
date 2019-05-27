@@ -8,13 +8,15 @@ var Kvadrat = require("./mod/kvadrat.js");
 var Null_Obj = require("./mod/null_obj.js");
 var Zabor = require("./mod/zabor.js");
 var Plague = require("./mod/plague.js");
-
+var Player = require("./mod/player.js");
 
 
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+
+
 
 let grassHashiv = 2;
 
@@ -74,17 +76,31 @@ let target_y = 0;
    //matrix[42][23] = new Grass(23,42);
   //  matrix[36][7] = new GrassEaterEater(7,36);
     
-    io.on("send",function(){
+  
+    matrix[50][50] = new Player(50,50,target_x,target_y);
+    console.log("start "+target_x);
+    
+
+
+    io.sockets.on("connection",function(socket){
+        socket.on("send",function(send){
+            socket.on;
+            target_x = send.target_x;
+            target_y = send.target_y;
+            console.log("end "+target_x);
+        });
+    });
+    console.log("end "+target_x);
+    /*function a(send){
         socket.on;
         target_x = send.target_x;
         target_y = send.target_y;
-    });
+        console.log("send");
+    }*/
 
 function _logic()
 {
-    
-
-    console.log(target_x,target_y);
+       
     // guyn@ poxelwu hamar
     if(a_c == true)
     {
@@ -116,8 +132,6 @@ function _logic()
             a_c = true;
         }
     }
-
-    //menak nkarelu hamar for 
     //metodneri for
     for (var y11 = 0; y11 < matrix.length; y11+=1) 
             {
@@ -133,7 +147,7 @@ function _logic()
                         {
                             grow_up_speed = 1;
                         }
-                            matrix[y11][x11].grow_up(1);
+                            matrix[y11][x11].grow_up(grow_up_speed);
                             if(matrix[y11][x11].newObj()){
                                 
                                 grassHashiv++;
@@ -156,6 +170,15 @@ function _logic()
                             if(matrix[y11][x11].life == true)
                             {
                             matrix[y11][x11].move();
+                            }
+                    }
+                    else if ( matrix[y11][x11]._index == 9 )
+                    {
+                            if(matrix[y11][x11].life == true)
+                            {
+                            console.log(matrix[y11][x11]);
+                            matrix[y11][x11].move();
+                            
                             }
                     }
                     else if ( matrix[y11][x11]._index == 7 )
@@ -188,8 +211,7 @@ function _logic()
                         
                     }
                    
-                }
-
+                }       
         // life @ kastil e vor nor stexcac obj.@ chkanchi
         for (var y2 = 0; y2 < matrix.length; y2+=1) 
             {
@@ -237,6 +259,18 @@ function _logic()
                         if(matrix[y2][x2].life == false)
                         {
                            matrix[y2][x2].life = true;
+                        }
+                       
+                    }
+                    if ( matrix[y2][x2]._index == 9)
+                    {
+                        
+
+                        if(matrix[y2][x2].life == false)
+                        {
+                            
+                           matrix[y2][x2].life = true;
+                           matrix[y2][x2].get_target(target_x,target_y);
                         }
                        
                     }
